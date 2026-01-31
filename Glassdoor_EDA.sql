@@ -15,11 +15,11 @@ where job_title not like "Data Scientist" and
     job_title not like "Senior Data Analyst" and
     job_title not like "Machine Learning Engineer"
 group by job_title
-order by count(*) desc # con esto lo que hago es sacar los trabajos más significativos, para agrupar el resto
+order by count(*) desc
 )
 select "Others Data jobs" as "Data jobs", count(job_title) as "Number of Offers"
-from others_cte # con esto obtengo la cantidad de ofertas de otros trabajos no principales
-union # finalmente, hago una union con los trabajos principales
+from others_cte
+union
 select job_title "Data Jobs" , count(*)
 from jobs_clean2
 group by job_title
@@ -40,7 +40,7 @@ where job_title not like "Data Scientist" and
     job_title not like "Senior Data Analyst" and
     job_title not like "Machine Learning Engineer"
 group by job_title
-order by 2 desc # con esto lo que hago es sacar los trabajos más significativos, para agrupar el resto
+order by 2 desc
 )
 select "Others Data jobs" as "Data jobs", avg(min) as "min anual salary", avg(max) as "max anual salary", count(*) as count
 from others_cte2
