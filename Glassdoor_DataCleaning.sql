@@ -22,10 +22,10 @@ INTO TABLE ds_jobs
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"' 
 LINES TERMINATED BY '\r\n' -- '\n' (Mac/Linux)
-IGNORE 1 ROWS; -- Saltar el encabezado
+IGNORE 1 ROWS;
 
 # --------------------------------------------------------------------------------
-# creamos la tabla de seguridad (copia de respaldo)
+# backup the table
 create table jobs_clean
 like ds_jobs;
 
@@ -55,7 +55,7 @@ select *
 from duplicates
 where row_num > 1;
 
-/* delete duplicates:
+delete duplicates:
 delete
 from jobs_clean
 where id_index =(
@@ -70,7 +70,6 @@ from duplicates
 where row_num > 1
 limit 1
 );
-*/
 
 -- 2. Standarize the Data
 select distinct job_title
